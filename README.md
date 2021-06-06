@@ -1,24 +1,24 @@
-# hnreader
+# hackernews-reader
 
-## Project setup
-```
+(WIP) Minimal HackerNews reader made with Vue 2.0
+<!-- ![Icon](https://cdn.discordapp.com/attachments/730969252865245267/851127922223087687/man-technologist_1f468-200d-1f4bb.png)   -->
+![Icon](https://media.discordapp.net/attachments/730969252865245267/851129577056239646/unknown.png?width=994&height=559)
+
+## Setup
+
+Setup and run with npm
+
+```bash
+# install dependencies with npm
 npm install
-```
 
-### Compiles and hot-reloads for development
-```
+# serve in dev mode, with hot reload at localhost:8080
 npm run serve
-```
 
-### Compiles and minifies for production
-```
+# build for production
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
+## License
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+[MIT](https://choosealicense.com/licenses/mit/)
