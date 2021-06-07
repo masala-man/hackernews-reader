@@ -1,5 +1,5 @@
 <template>
-	<div class="ViewComments">
+	<main class="ViewComments">
 		<div class="post-highlights">
 			<a v-if="post.link!=null" :href="post.link"><h2>{{post.title}}</h2></a>
 			<h2 v-else>{{post.title}}</h2>
@@ -14,7 +14,7 @@
 			<!-- <h3>Comments:</h3> -->
 			<!-- {{comments}} -->
 		</div>
-	</div>
+	</main>
 </template>
 
 <script>
@@ -31,11 +31,11 @@ export default {
 	},
 	data(){
 		return{
-			comments: {},
+			comments: [],
 			post: {
 				title: {},
 				points: {},
-				comments: [],
+				comments: {},
 				date: {},
 				author: {},
 				selftext: {},
@@ -72,14 +72,14 @@ export default {
 		},
 		search(id, myArray){
 			for (var i=0; i < myArray.length; i++) {
-				if (myArray[i].parent_id === id) {
+				if (myArray[i].objectID === id) {
 					return i;
 				}
 			}
 		},
-		// organizeComments(){
-		// 	//TODO	
-		// }
+		organizeComments(){
+			//TODO
+		}
 	}
 }
 </script>
@@ -98,7 +98,11 @@ export default {
 .extended-details > a{
 	color: darkgray;
 }
-.post-selftext{
+.extended-details > a:hover{
+	color: gray;
+}
+.comment-details{
+	margin-top: 30px;
 	margin-bottom: 30px;
 }
 h3{

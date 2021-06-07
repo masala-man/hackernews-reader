@@ -1,8 +1,8 @@
 <template>
-	<div class="AppFooter">
-		<b>Made with ❤ in Mumbai</b>
+	<footer class="AppFooter">
+		<b>Made with 💖 in Mumbai</b>
 		<span><a href="https://news.ycombinator.com/"><b>HackerNews</b></a> / <a href="https://www.github.com/masala-man"><b>Github</b></a></span>
-	</div>
+	</footer>
 </template>
 
 <script>
@@ -23,7 +23,6 @@ export default {
 }
 a{
 	color: var(--text-color);
-	/* text-decoration: none; */
 }
 a:hover{
 	color: rgb(224, 63, 63);

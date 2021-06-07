@@ -14,6 +14,13 @@ export default {
 			theme: ''
 		}
 	},
+	created(){
+		window.addEventListener('keydown', (e) => {
+			if (e.shiftKey && e.key == 'D') {
+				this.toggleTheme()
+			}
+		})
+	},
 	methods: {
 		toggleTheme() {
 			this.theme = this.theme == 'darkMode' ? '' : 'darkMode';
@@ -62,6 +69,9 @@ a{
 a:hover{
 	color: var(--accent-color);
 	transition: 400ms;
+}
+p{
+	margin-bottom: 12px;
 }
 ::-moz-selection {
 	color: var(--background-color);

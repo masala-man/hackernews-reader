@@ -1,7 +1,7 @@
 <template>
-	<div class="ViewAuthor">
+	<main class="ViewAuthor">
 		<PostItem v-for="(post, index) in posts" :key="index" :post="post"></PostItem>
-	</div>
+	</main>
 </template>
 
 <script>
