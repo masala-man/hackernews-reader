@@ -8,53 +8,60 @@
 
 <script>
 export default {
-	name: 'App',
+	name: "App",
 	data(){
 		return{
-			theme: ''
+			theme: {}
 		}
 	},
 	created(){
-		window.addEventListener('keydown', (e) => {
-			if (e.shiftKey && e.key == 'D') {
-				this.toggleTheme()
-			}
+		window.addEventListener("keydown", (e) => {
+			if (e.shiftKey && e.key == "D") {
+				if (this.theme == "lightMode") this.changeTheme("darkMode")
+				else this.changeTheme("lightMode")
+		}
 		})
+		const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+		if (prefersDarkScheme.matches) this.changeTheme("darkMode")
+		else this.changeTheme("lightMode")
 	},
 	methods: {
-		toggleTheme() {
-			this.theme = this.theme == 'darkMode' ? '' : 'darkMode';
-			document.documentElement.setAttribute('data-theme', this.theme);
-			localStorage.setItem('theme', this.theme);
+		changeTheme(theme) {
+				this.theme = theme
+				document.documentElement.setAttribute("data-theme", this.theme);
 		}
 	}
 }
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
 
 :root {
-    --background-color: rgb(240, 240, 240);
-    --text-color: black;
+	--background-color: rgb(240, 240, 240);
+	--text-color: black;
+	--accent-color: rgb(47, 153, 73);
+	--accent-color-dark: rgb(41, 131, 64);
+}
+[data-theme="lightMode"] {
+	--background-color: rgb(240, 240, 240);
+	--text-color: black;
 	--accent-color: rgb(47, 153, 73);
 	--accent-color-dark: rgb(41, 131, 64);
 }
 [data-theme="darkMode"] {
-    --background-color: rgb(26, 25, 25);
-    --text-color: white;
+	--background-color: rgb(26, 25, 25);
+	--text-color: white;
 	--accent-color: rgb(47, 153, 73);
 	--accent-color-dark: rgb(41, 131, 64);
 }
-
-
 * { 
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	-moz-tap-highlight-color: rgba(0, 0, 0, 0);
-	font-family: 'Roboto Mono', monospace;
+	font-family: "Roboto Mono", monospace;
 }
 .unselectable{
 	-webkit-user-select: none;

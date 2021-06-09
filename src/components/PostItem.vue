@@ -1,33 +1,35 @@
 <template>
 	<div class="PostItem">
-		<router-link v-if="isSelf" :to="{path: './comments/' + post.objectID}"><h3>{{post.title}}</h3></router-link>
+		<router-link v-if="isSelf" :to="{path: '/comments/' + post.objectID}"><h3>{{post.title}}</h3></router-link>
 		<a v-else :href="post.url"><h3>{{post.title}}</h3></a>
-		<div class="details">{{post.points}} by 
+		<div class="details">{{post.points}} {{pointGrammar}} by 
 			<router-link :to="{path: '/author/' + post.author}">{{post.author}}</router-link>
-			- {{this.readableDateString}}
+			/ {{date}} / 
 			<router-link :to="{path: '/comments/' + post.objectID}">Comments</router-link>
 		</div>
 	</div>
 </template>
 
 <script>
+import dateMixin from "../mixins/dateMixin"
+import pointMixin from "../mixins/pointMixin";
 
 export default {
 	name: "PostItem",
+	mixins: [pointMixin,dateMixin],
 	props: {
 		post: {
 			type: Object,
 			required: true
 		}
 	},
-	date(){
+	data(){
 		return{
-			readableDateString: {}
+			date: {}
 		}
 	},
 	created(){
-		var readableDate = new Date(this.post.created_at);
-		this.readableDateString = readableDate.toLocaleString('en-IN', {"dateStyle": "medium","timeStyle": "short"});
+		this.formatDateRelative(this.post.created_at)
 	},
 	computed: {
 		isSelf(){
@@ -42,7 +44,7 @@ export default {
 
 <style scoped>
 .PostItem{
-	font-family: 'Roboto Mono', monospace;
+	font-family: "Roboto Mono", monospace;
 	margin-top: 15px;
 	margin-bottom: 15px;
 	color: var(--text-color)

@@ -1,7 +1,7 @@
 <template>
 	<header class="AppHeader">
 		<h1>
-			<span v-if="this.$parent.theme==''" class="unselectable">👨‍💻</span>
+			<span v-if="this.$parent.theme=='lightMode'" class="unselectable">👨‍💻</span>
 			<span v-else class="unselectable">🦸‍♂️</span>		
 			<router-link to="/">HNR</router-link> / 
 			<router-link to="/ask">ASK</router-link> / 
@@ -21,7 +21,7 @@ export default {
 .AppHeader{
 	margin-top: 20px;
 	margin-bottom: 20px;
-	font-family: 'Roboto Mono', monospace;
+	font-family: "Roboto Mono", monospace;
 	color: var(--text-color)
 }
 @media (max-width: 768px) {

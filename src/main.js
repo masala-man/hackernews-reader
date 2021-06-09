@@ -1,14 +1,14 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from "vue"
+import VueRouter from "vue-router"
 
 // import components
-import App from './App.vue'
-import AppHeader from './components/AppHeader.vue'
-import AppFooter from './components/AppFooter.vue'
-import ViewPosts from './components/ViewPosts.vue'
-import ViewComments from './components/ViewComments.vue'
-import ViewAuthor from './components/ViewAuthor.vue'
-import Error404 from './components/Error404.vue'
+import App from "./App.vue"
+import AppHeader from "./components/AppHeader.vue"
+import AppFooter from "./components/AppFooter.vue"
+import ViewPosts from "./components/ViewPosts.vue"
+import ViewComments from "./components/ViewComments.vue"
+import ViewAuthor from "./components/ViewAuthor.vue"
+import Error404 from "./components/Error404.vue"
 
 // vue config
 Vue.config.productionTip = false
@@ -19,12 +19,12 @@ const router = new VueRouter({
 	mode: "history",
 	routes: [
 		{
-			path: '*',
-			redirect: '/404'
+			path: "*",
+			redirect: "/404"
 		},
 		{
-			name: 'home',
-			path: '/',
+			name: "home",
+			path: "/",
 			components: {
 				header: AppHeader,
 				content: ViewPosts,
@@ -33,8 +33,8 @@ const router = new VueRouter({
 			props: true
 		},
 		{ 
-			name: 'ask',
-			path: '/ask',
+			name: "ask",
+			path: "/ask",
 			components:{
 					header: AppHeader,
 					content: ViewPosts,
@@ -43,8 +43,8 @@ const router = new VueRouter({
 			props: true
 		},
 		{ 
-			name: 'show',
-			path: '/show',
+			name: "show",
+			path: "/show",
 			components:{
 				header: AppHeader,
 				content: ViewPosts,
@@ -53,8 +53,8 @@ const router = new VueRouter({
 			props: true
 		},
 		{ 
-			name: 'jobs',
-			path: '/jobs',
+			name: "jobs",
+			path: "/jobs",
 			components:{
 				header: AppHeader,
 				content: ViewPosts,
@@ -63,8 +63,8 @@ const router = new VueRouter({
 			props: true
 		},
 		{
-			name: 'comments',
-			path: '/comments/:id',
+			name: "comments",
+			path: "/comments/:id",
 			components: {
 				header: AppHeader,
 				content: ViewComments,
@@ -73,8 +73,8 @@ const router = new VueRouter({
 			props: true
 		},
 		{
-			name: 'author',
-			path: '/author/:username',
+			name: "author",
+			path: "/author/:username",
 			components: {
 				header: AppHeader,
 				content: ViewAuthor,
@@ -83,8 +83,8 @@ const router = new VueRouter({
 			props: true
 		},
 		{
-			name: '404',
-			path: '/404',
+			name: "404",
+			path: "/404",
 			components: {
 				header: AppHeader,
 				content: Error404,
@@ -97,4 +97,4 @@ const router = new VueRouter({
 // create vue
 new Vue({
 render: h => h(App),
-router}).$mount('#app')
+router}).$mount("#app")

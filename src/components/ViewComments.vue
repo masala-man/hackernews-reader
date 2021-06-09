@@ -5,23 +5,30 @@
 			<h2 v-else>{{post.title}}</h2>
 			<span class="extended-details">
 				{{post.points}} {{pointGrammar}} by 
-			<router-link :to="{path: '/author/' + post.author}">{{post.author}}</router-link> - {{readableDateString}}
+				<router-link :to="{path: '/author/' + post.author}">{{post.author}}</router-link> - {{date}}
 			</span>
 		</div>		
-		<p class="post-selftext" v-if="this.post.selftext" v-html="this.post.selftext">
-		<p v-else style="color: rgb(180, 180, 180);	margin-bottom: 30px;">Empty Post</p>
+		<p class="post-selftext" v-html="post.selftext"></p>
 		<div class="comment-details">
-			<!-- <h3>Comments:</h3> -->
-			<!-- {{comments}} -->
+			<h3>Comments:</h3>
+			<p v-if="!this.comments.length" style="color: rgb(180, 180, 180);margin-bottom: 30px;">No Comments</p>
+			<CommentItem v-for="(comment, index) in comments" :key="index" :comment="comment" :depth="0"></CommentItem>
 		</div>
 	</main>
 </template>
 
 <script>
-import * as axios from 'axios';
+import * as axios from "axios";
+import dateMixin from "../mixins/dateMixin";
+import pointMixin from "../mixins/pointMixin";
+import CommentItem from "./CommentItem.vue";
 
 export default {
 	name: "ViewComments",
+	mixins: [pointMixin, dateMixin],
+	components: {
+		CommentItem
+	},
 	computed: {
 		pointGrammar(){
 			if (this.points == 1)
@@ -31,54 +38,32 @@ export default {
 	},
 	data(){
 		return{
+			date: {},
 			comments: [],
-			post: {
-				title: {},
-				points: {},
-				comments: {},
-				date: {},
-				author: {},
-				selftext: {},
-				link: {}
-			},
-			readableDateString: {}
+			post: {}
 		}
 	},
 	created(){
 		this.getPostDetails()
-		// this.organizeComments()
 	},
 	updated(){
-		this.getPostDetails()
-		// this.organizeComments()
+		// this.getPostDetails()
 	},
 	methods:{
 		async getPostDetails(){
-			var response = await axios.get(`http://hn.algolia.com/api/v1/search?tags=story_${this.$route.params.id}`)
-			var result = response.data['hits']
+			var response = await axios.get(`http://hn.algolia.com/api/v1/items/${this.$route.params.id}`)
+			var result = response.data
 			this.post = {
-				title: result[0].title,
-				points: result[0].points,
-				comments: result[0].num_comments,
-				date: result[0].created_at,
-				author: result[0].author,
-				selftext: result[0].story_text,
-				link: result[0].url
+				title: result.title,
+				points: result.points,
+				comments: result.num_comments,
+				date: result.created_at,
+				author: result.author,
+				selftext: result.text,
+				link: result.url
 			}
-			result.shift()
-			this.comments = result
-			var readableDate = new Date(this.post.date);
-			this.readableDateString = readableDate.toLocaleString('en-IN', {"dateStyle": "medium","timeStyle": "short"});
-		},
-		search(id, myArray){
-			for (var i=0; i < myArray.length; i++) {
-				if (myArray[i].objectID === id) {
-					return i;
-				}
-			}
-		},
-		organizeComments(){
-			//TODO
+			this.comments = result.children
+			this.formatDateSpecific(this.post.date)
 		}
 	}
 }

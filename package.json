@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"homepage": "https://github.com/masala-man/hackernews-reader",
 	"author": "Ayush Shenoy <masala_man@protonmail.com>",
-	"license" : "MIT",
+	"license": "MIT",
 	"scripts": {
 		"serve": "vue-cli-service serve",
 		"build": "vue-cli-service build",
@@ -12,6 +12,7 @@
 	"dependencies": {
 		"axios": "^0.21.1",
 		"core-js": "^3.6.5",
+		"luxon": "^1.27.0",
 		"vue": "^2.6.11",
 		"vue-router": "^3.5.1"
 	},
