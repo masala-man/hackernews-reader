@@ -4,8 +4,8 @@
 			<a v-if="post.link!=null" :href="post.link"><h2>{{post.title}}</h2></a>
 			<h2 v-else>{{post.title}}</h2>
 			<span class="extended-details">
-				{{post.points}} {{pointGrammar}} by 
-				<router-link :to="{path: '/author/' + post.author}">{{post.author}}</router-link> - {{date}}
+				{{post.points}} {{pointGrammar(this.post)}} by 
+				<router-link :to="{path: '/user/' + post.author}">{{post.author}}</router-link> - {{date}}
 			</span>
 		</div>		
 		<p class="post-selftext" v-html="post.selftext"></p>
@@ -28,13 +28,6 @@ export default {
 	mixins: [pointMixin, dateMixin],
 	components: {
 		CommentItem
-	},
-	computed: {
-		pointGrammar(){
-			if (this.points == 1)
-			return "pt"
-			else return "pts"
-		}
 	},
 	data(){
 		return{
@@ -71,7 +64,8 @@ export default {
 
 <style scoped>
 .ViewComments{
-	color: var(--text-color)
+	color: var(--text-color);
+	min-height: 70vh;
 }
 .post-highlights{
 	margin-top: 20px;

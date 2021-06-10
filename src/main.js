@@ -74,7 +74,7 @@ const router = new VueRouter({
 		},
 		{
 			name: "author",
-			path: "/author/:username",
+			path: "/user/:username",
 			components: {
 				header: AppHeader,
 				content: ViewAuthor,
@@ -91,7 +91,14 @@ const router = new VueRouter({
 				footer: AppFooter
 			}
 		}
-	]
+	],
+	scrollBehavior () {
+		return {
+			x: 0,
+			y: 0,
+			behavior: 'smooth'
+		}
+	}
 })
 
 // create vue

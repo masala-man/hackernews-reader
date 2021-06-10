@@ -44,5 +44,7 @@ export default {
 </script>
 
 <style scoped>
-
+.ViewPosts{
+	min-height: 70vh;
+}
 </style>

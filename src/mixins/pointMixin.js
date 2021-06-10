@@ -1,8 +1,8 @@
 export default {
-	computed: {
-		pointGrammar(){
-			if (this.points == 1)
-			return "pt"
+	methods: {
+		pointGrammar(item){
+			if (item.points == 1)
+				return "pt"
 			else return "pts"
 		}
 	}

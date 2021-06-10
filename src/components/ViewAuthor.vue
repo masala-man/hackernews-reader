@@ -20,14 +20,20 @@
 		
 		</div>
 		<div class="user-posts">
-		<h2>Posts:</h2>
-		<PostItem v-for="(post, index) in posts" :key="index" :post="post"></PostItem>
+			<h2>Posts:</h2>
+			<p v-if="!this.posts.length" style="color: rgb(180, 180, 180);margin-bottom: 30px;">No Posts</p>
+			<PostItem v-for="(post, index) in posts" :key="index" :post="post"></PostItem>
+		</div>
+		<div class="user-comments">
+			<h2>Comments:</h2>
+			<CommentItem v-for="(comment, index) in comments" :key="index" :comment="comment" :depth="0"></CommentItem>
 		</div>
 	</main>
 </template>
 
 <script>
 import PostItem from "./PostItem.vue"
+import CommentItem from './CommentItem.vue'
 import * as axios from "axios"
 import dateMixin from "../mixins/dateMixin"
 
@@ -35,18 +41,21 @@ export default {
 	name: "ViewAuthor",
 	mixins: [dateMixin],
 	components: {
-		PostItem
+		PostItem,
+		CommentItem
 	},
 	data(){
 		return{
 			user: {},
 			date: {},
-			posts: []
+			posts: [],
+			comments: []
 		}
 	},
 	created(){
 		this.getPosts()
 		this.getUser()
+		this.getComments()
 	},
 	updated(){
 		// this.getPosts()
@@ -59,8 +68,22 @@ export default {
 			this.formatDateSpecific(response.data.created_at)
 		},
 		async getPosts(){	
-			var response = await axios.get(`http://hn.algolia.com/api/v1/search?tags=story,author_${this.$route.params.username}`)
-			this.posts = response.data["hits"]
+			var response = await axios.get(`https://hn.algolia.com/api/v1/search?tags=story,author_${this.$route.params.username}`)
+			this.posts = response.data.hits
+		},
+		async getComments(){
+			var response = await axios.get(`https://hn.algolia.com/api/v1/search?tags=comment,author_${this.$route.params.username}`)
+			var results = response.data.hits
+			this.comments = results.map(comment => ({
+				author: comment.author,
+				text: comment.comment_text,
+				points: comment.points,
+				created_at: comment.created_at,
+				parent: {
+					title: comment.story_title,
+					id: `${comment.story_id}`
+				}
+			}))
 		}
 	}
 }
@@ -68,7 +91,8 @@ export default {
 
 <style scoped>
 .ViewAuthor{
-	color: var(--text-color)
+	color: var(--text-color);
+	min-height: 70vh;
 }
 .user-karma{
 	font-size: 18px;
@@ -77,7 +101,16 @@ export default {
 	margin-top: 20px;
 	margin-bottom: 30px;
 }
+.user-posts{
+	margin-bottom: 30px;
+}
+.user-comments{
+	margin-bottom: 30px;
+}
 td {
   padding-right: 10px;
+}
+h2{
+	margin-bottom: 15px;
 }
 </style>

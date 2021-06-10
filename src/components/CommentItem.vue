@@ -2,9 +2,10 @@
 	<div class="CommentItem">
 		<div v-if="comment.author!=null" :style="indent" class="comment-content">
 			<span class="comment-highlights">
-				<a class="unselectable expand-button" v-if="comment.children.length" v-on:click="toggleChildren">[{{button}}]</a> <router-link :to="{path: '/author/' + comment.author}">{{comment.author}}</router-link>
-				<span class="comment-points" v-if="comment.points!=null"> / {{comment.points}} {{pointGrammar}}</span>
+				<a class="unselectable expand-button" v-if="comment.children && comment.children.length" v-on:click="toggleChildren">[{{button}}]</a> <router-link :to="{path: '/user/' + comment.author}">{{comment.author}}</router-link>
+				<span class="comment-points" v-if="comment.points!=null"> / {{comment.points}} {{pointGrammar(this.comment)}}</span>
 				<span class="comment-date"> / {{date}}</span>
+				<span v-if="comment.parent" class="comment-post"> > <router-link :to="{path: '/comments/' + comment.parent.id}">{{comment.parent.title}}</router-link></span>
 			</span>
 			<br>
 			<p class="comment-text" v-html="comment.text"></p>
@@ -48,7 +49,7 @@ export default {
 		indent() {
 			var indentColors = ["#de3a3c", "#f702ca", "#6e3ade", "#5ab0ed", "#21b555", "#d5db1f", "#db831f", "#db2e1f"]
 			var computedStyle = {
-				transform: `translate(${this.depth * 25}px)`,
+				"margin-left": `${this.depth * 10}px`,
 				"border-left": `3px solid ${indentColors[this.depth]}`
 			}
 			return computedStyle

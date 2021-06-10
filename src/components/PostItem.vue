@@ -2,8 +2,8 @@
 	<div class="PostItem">
 		<router-link v-if="isSelf" :to="{path: '/comments/' + post.objectID}"><h3>{{post.title}}</h3></router-link>
 		<a v-else :href="post.url"><h3>{{post.title}}</h3></a>
-		<div class="details">{{post.points}} {{pointGrammar}} by 
-			<router-link :to="{path: '/author/' + post.author}">{{post.author}}</router-link>
+		<div class="details">{{post.points}} {{pointGrammar(this.post)}} by 
+			<router-link :to="{path: '/user/' + post.author}">{{post.author}}</router-link>
 			/ {{date}} / 
 			<router-link :to="{path: '/comments/' + post.objectID}">Comments</router-link>
 		</div>
