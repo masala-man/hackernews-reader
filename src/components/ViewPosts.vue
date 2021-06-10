@@ -24,18 +24,20 @@ export default {
 		}
 	},
 	created() {
+		document.title = this.$route.meta.title;
 		this.fetchNews()
 	},
 	updated(){
+		document.title = this.$route.meta.title;
 		this.fetchNews()
 	},
 	methods: {
 		async fetchNews() {
 			let url = ""
-			if (this.$route.path === "/ask") url = "http://hn.algolia.com/api/v1/search_by_date?tags=ask_hn";
-			if (this.$route.path === "/jobs") url = "http://hn.algolia.com/api/v1/search?tags=hn_jobs";
-			if (this.$route.path === "/show") url = "http://hn.algolia.com/api/v1/search_by_date?tags=show_hn";
-			if (this.$route.path === "/") url = "http://hn.algolia.com/api/v1/search?tags=front_page";
+			if (this.$route.path === "/ask") url = "https://hn.algolia.com/api/v1/search_by_date?tags=ask_hn";
+			if (this.$route.path === "/jobs") url = "https://hn.algolia.com/api/v1/search?tags=hn_jobs";
+			if (this.$route.path === "/show") url = "https://hn.algolia.com/api/v1/search_by_date?tags=show_hn";
+			if (this.$route.path === "/") url = "https://hn.algolia.com/api/v1/search?tags=front_page";
 			var response = await axios.get(url)
 			this.posts = response.data["hits"]
 		}

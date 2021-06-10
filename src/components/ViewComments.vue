@@ -5,7 +5,7 @@
 			<h2 v-else>{{post.title}}</h2>
 			<span class="extended-details">
 				{{post.points}} {{pointGrammar(this.post)}} by 
-				<router-link :to="{path: '/user/' + post.author}">{{post.author}}</router-link> - {{date}}
+				<router-link :to="{name: 'author', params: {username: post.author}}">{{post.author}}</router-link> - {{date}}
 			</span>
 		</div>		
 		<p class="post-selftext" v-html="post.selftext"></p>
@@ -29,6 +29,12 @@ export default {
 	components: {
 		CommentItem
 	},
+	props: {
+		postTitle: {
+			type: String,
+			// required: true
+		}
+	},
 	data(){
 		return{
 			date: {},
@@ -39,12 +45,9 @@ export default {
 	created(){
 		this.getPostDetails()
 	},
-	updated(){
-		// this.getPostDetails()
-	},
 	methods:{
 		async getPostDetails(){
-			var response = await axios.get(`http://hn.algolia.com/api/v1/items/${this.$route.params.id}`)
+			var response = await axios.get(`https://hn.algolia.com/api/v1/items/${this.$route.params.id}`)
 			var result = response.data
 			this.post = {
 				title: result.title,

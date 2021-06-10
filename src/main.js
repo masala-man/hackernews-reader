@@ -23,44 +23,56 @@ const router = new VueRouter({
 			redirect: "/404"
 		},
 		{
-			name: "home",
+			name: "Front Page",
 			path: "/",
 			components: {
 				header: AppHeader,
 				content: ViewPosts,
 				footer: AppFooter
 			},
-			props: true
+			props: true,
+			meta: {
+				title: "Front Page | HNR"
+			}
 		},
 		{ 
-			name: "ask",
+			name: "Ask",
 			path: "/ask",
 			components:{
 					header: AppHeader,
 					content: ViewPosts,
 					footer: AppFooter
 			},
-			props: true
+			props: true,
+			meta: {
+				title: "Ask | HNR"
+			}
 		},
 		{ 
-			name: "show",
+			name: "Show",
 			path: "/show",
 			components:{
 				header: AppHeader,
 				content: ViewPosts,
 				footer: AppFooter
 			},
-			props: true
+			props: true,
+			meta: {
+				title: "Show | HNR"
+			}
 		},
 		{ 
-			name: "jobs",
+			name: "Jobs",
 			path: "/jobs",
 			components:{
 				header: AppHeader,
 				content: ViewPosts,
 				footer: AppFooter
 			},
-			props: true
+			props: true,
+			meta: {
+				title: "Jobs | HNR"
+			}
 		},
 		{
 			name: "comments",
@@ -70,7 +82,7 @@ const router = new VueRouter({
 				content: ViewComments,
 				footer: AppFooter
 			},
-			props: true
+			props: true,
 		},
 		{
 			name: "author",

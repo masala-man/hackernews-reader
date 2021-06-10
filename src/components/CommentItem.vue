@@ -2,10 +2,10 @@
 	<div class="CommentItem">
 		<div v-if="comment.author!=null" :style="indent" class="comment-content">
 			<span class="comment-highlights">
-				<a class="unselectable expand-button" v-if="comment.children && comment.children.length" v-on:click="toggleChildren">[{{button}}]</a> <router-link :to="{path: '/user/' + comment.author}">{{comment.author}}</router-link>
+				<a class="unselectable expand-button" v-if="comment.children && comment.children.length" v-on:click="toggleChildren">[{{button}}]</a> <router-link :to="{name: 'author', params: {username: comment.author}}">{{comment.author}}</router-link>
 				<span class="comment-points" v-if="comment.points!=null"> / {{comment.points}} {{pointGrammar(this.comment)}}</span>
 				<span class="comment-date"> / {{date}}</span>
-				<span v-if="comment.parent" class="comment-post"> > <router-link :to="{path: '/comments/' + comment.parent.id}">{{comment.parent.title}}</router-link></span>
+				<span v-if="comment.parent" class="comment-post"> > <router-link :to="{name: 'comments', params: {id: comment.parent.id}}">{{comment.parent.title}}</router-link></span>
 			</span>
 			<br>
 			<p class="comment-text" v-html="comment.text"></p>

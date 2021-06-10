@@ -33,7 +33,7 @@
 
 <script>
 import PostItem from "./PostItem.vue"
-import CommentItem from './CommentItem.vue'
+import CommentItem from "./CommentItem.vue"
 import * as axios from "axios"
 import dateMixin from "../mixins/dateMixin"
 
@@ -53,13 +53,10 @@ export default {
 		}
 	},
 	created(){
+		document.title = `${this.$route.params.username} | HNR`;
 		this.getPosts()
 		this.getUser()
 		this.getComments()
-	},
-	updated(){
-		// this.getPosts()
-		// this.getUser()
 	},
 	methods: {
 		async getUser(){

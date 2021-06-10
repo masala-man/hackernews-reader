@@ -3,10 +3,10 @@
 		<h1>
 			<span v-if="this.$parent.theme=='lightMode'" class="unselectable">👨‍💻</span>
 			<span v-else class="unselectable">🦸‍♂️</span>		
-			<router-link to="/">HNR</router-link> / 
-			<router-link to="/ask">ASK</router-link> / 
-			<router-link to="/show">SHOW</router-link> / 
-			<router-link to="/jobs">JOBS</router-link>
+			<router-link :to="{name: 'Front Page'}">HNR</router-link> / 
+			<router-link :to="{name: 'Ask'}">ASK</router-link> / 
+			<router-link :to="{name: 'Show'}">SHOW</router-link> / 
+			<router-link :to="{name: 'Jobs'}">JOBS</router-link>
 		</h1>
 	</header>
 </template>

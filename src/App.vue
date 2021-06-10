@@ -14,16 +14,29 @@ export default {
 			theme: {}
 		}
 	},
+	mounted(){
+		if (localStorage.theme){
+			this.changeTheme(localStorage.theme)
+		}
+		else{
+			const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+			if (prefersDarkScheme.matches) this.changeTheme("darkMode")
+			else this.changeTheme("lightMode")
+		}
+	},
 	created(){
 		window.addEventListener("keydown", (e) => {
 			if (e.shiftKey && e.key == "D") {
-				if (this.theme == "lightMode") this.changeTheme("darkMode")
-				else this.changeTheme("lightMode")
-		}
+				if (this.theme == "lightMode") {
+					this.changeTheme("darkMode")
+					localStorage.theme = "darkMode";
+				}
+				else {
+					this.changeTheme("lightMode")
+					localStorage.theme = "lightMode";
+				}
+			}
 		})
-		const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
-		if (prefersDarkScheme.matches) this.changeTheme("darkMode")
-		else this.changeTheme("lightMode")
 	},
 	methods: {
 		changeTheme(theme) {
