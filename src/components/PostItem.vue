@@ -5,7 +5,7 @@
 		<div class="details">{{post.points}} {{pointGrammar(this.post)}} by 
 			<router-link :to="{name: 'author', params: {username: post.author}}">{{post.author}}</router-link>
 			/ {{date}} / 
-			<router-link :to="{name: 'comments', params: {id: post.objectID}}">Comments</router-link>
+			<router-link :to="{name: 'comments', params: {id: post.objectID}}">{{post.num_comments}} Comments</router-link>
 		</div>
 	</div>
 </template>

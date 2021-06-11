@@ -6,7 +6,7 @@
 			<router-link :to="{name: 'Front Page'}">HNR</router-link> / 
 			<router-link :to="{name: 'Ask'}">ASK</router-link> / 
 			<router-link :to="{name: 'Show'}">SHOW</router-link> / 
-			<router-link :to="{name: 'Jobs'}">JOBS</router-link>
+			<router-link :to="{name: 'Polls'}">POLLS</router-link>
 		</h1>
 	</header>
 </template>

@@ -74,20 +74,22 @@ export default {
 
 <style scoped>
 .comment-highlights{
-	color: gray;
+	color: var(--button-color);
 }
 .comment-highlights a{
-	color: gray;
+	color: var(--button-color);
 }
 .comment-highlights a:hover{
 	color: var(--accent-color)
 }
 a.expand-button:hover{
-	color: darkgray;
+	color: var(--button-hover-color);
+	cursor: pointer;
 }
 .comment-content{
 	padding-left: 10px;
 	margin-bottom: 15px;
+	overflow-wrap: break-word;
 }
 p{
 	font-size: 14px;

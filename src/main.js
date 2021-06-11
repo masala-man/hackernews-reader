@@ -62,8 +62,8 @@ const router = new VueRouter({
 			}
 		},
 		{ 
-			name: "Jobs",
-			path: "/jobs",
+			name: "Polls",
+			path: "/polls",
 			components:{
 				header: AppHeader,
 				content: ViewPosts,
@@ -71,7 +71,7 @@ const router = new VueRouter({
 			},
 			props: true,
 			meta: {
-				title: "Jobs | HNR"
+				title: "Polls | HNR"
 			}
 		},
 		{

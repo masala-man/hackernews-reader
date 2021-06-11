@@ -1,7 +1,7 @@
 <template>
 	<div id="App">
 		<router-view name="header"></router-view>
-		<router-view name="content"></router-view>
+		<router-view :key="$route.fullPath" name="content"></router-view>
 		<router-view name="footer"></router-view>
 	</div>
 </template>
@@ -50,21 +50,19 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
 
-:root {
-	--background-color: rgb(240, 240, 240);
-	--text-color: black;
-	--accent-color: rgb(47, 153, 73);
-	--accent-color-dark: rgb(41, 131, 64);
-}
 [data-theme="lightMode"] {
 	--background-color: rgb(240, 240, 240);
 	--text-color: black;
+	--button-color: gray;
+	--button-hover-color: darkgray;
 	--accent-color: rgb(47, 153, 73);
 	--accent-color-dark: rgb(41, 131, 64);
 }
 [data-theme="darkMode"] {
 	--background-color: rgb(26, 25, 25);
 	--text-color: white;
+	--button-color: darkgray;
+	--button-hover-color: gray;
 	--accent-color: rgb(47, 153, 73);
 	--accent-color-dark: rgb(41, 131, 64);
 }

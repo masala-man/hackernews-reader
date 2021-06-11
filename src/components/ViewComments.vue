@@ -75,13 +75,13 @@ export default {
 	margin-bottom: 30px;
 }
 .extended-details{
-	color: darkgray;
+	color: var(--button-color);
 }
 .extended-details > a{
-	color: darkgray;
+	color: var(--button-color);
 }
 .extended-details > a:hover{
-	color: gray;
+	color: var(--button-hover-color);
 }
 .comment-details{
 	margin-top: 30px;
