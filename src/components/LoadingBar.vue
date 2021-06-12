@@ -20,8 +20,8 @@ export default {
 	methods: {
 		updateLoader(){
 			if (this.content == "#######")
-				this.content = this.content.replace(/#/g,' ');
-			this.content = this.content.replace(/ /,'#');
+				this.content = this.content.replace(/#/g," ");
+			this.content = this.content.replace(/ /,"#");
 		}
 	}
 }

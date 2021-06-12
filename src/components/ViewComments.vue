@@ -45,6 +45,9 @@ export default {
 	created(){
 		this.getPostDetails()
 	},
+	updated(){
+		document.title = `${this.post.title} | HNR`;
+	},
 	methods:{
 		async getPostDetails(){
 			this.loading = true

@@ -6,7 +6,10 @@
 
 <script>
 export default {
-	name: "Error404"
+	name: "Error404",
+	created(){
+		document.title = "Error 404 | HNR";
+	}
 }
 </script>
 

@@ -11,7 +11,7 @@
 <script>
 import * as axios from "axios";
 import PostItem from "./PostItem.vue"
-import LoadingBar from './LoadingBar.vue'
+import LoadingBar from "./LoadingBar.vue"
 
 export default {
 	name: "ViewPosts",
