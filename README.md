@@ -1,8 +1,14 @@
-# hackernews-reader
+# HackerNews Reader
 
-(WIP) Minimal HackerNews reader made with Vue 2.0
-<!-- ![Icon](https://cdn.discordapp.com/attachments/730969252865245267/851127922223087687/man-technologist_1f468-200d-1f4bb.png)   -->
-![Icon](https://media.discordapp.net/attachments/730969252865245267/851129577056239646/unknown.png?width=994&height=559)
+Minimal HackerNews reader made with Vue 2.0. Try it out [here](https://hn.shenoy.ml)!
+
+`Shift+D` for dark mode
+
+## Screenshots
+
+![](https://cdn.discordapp.com/attachments/730969252865245267/867069033072689162/2021-07-20_1.png)
+![](https://media.discordapp.net/attachments/730969252865245267/867069036139511888/2021-07-20_6.png)
+![](https://media.discordapp.net/attachments/730969252865245267/867069034524311572/2021-07-20_5.png)
 
 ## Setup
 
